@@ -53,9 +53,10 @@ while 1:
 			if 'Countess' in player and ('King' in player or 'Prince' in player):
 				choice='Countess'
 			elif 'Princess' in player:
-                                for i in player:
-                                        if i!='Princess':
-                                                choice=i
+				for i in player:
+					if i!='Princess':
+						choice=i
+						break
 			#else choose
 			else:
 				choice=0

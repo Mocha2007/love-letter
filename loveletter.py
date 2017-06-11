@@ -56,8 +56,8 @@ while 1:
 		if protectai==0:
 			if choice=='Guard':
 				#guess the ai's card
-				guess=0
-				while guess!='Guard':
+				guess='Guard'
+				while guess=='Guard':
 					guess=input('Guess the card in the AI\'s deck: ')
 				if guess in ai:
 					winner='Player'
@@ -161,8 +161,8 @@ while 1:
 			print('AI discard the',choice)
 			if protectplayer==0:
 				if choice=='Guard':
-					guess=0
-					while guess!='Guard':
+					guess='Guard'
+					while guess=='Guard':
 						#guess the player's card - this is kinda cheating but it's simple
 						guess=random.choice(player+deck)
 					if guess in player:

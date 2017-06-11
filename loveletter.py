@@ -1,9 +1,11 @@
-import random
+import random,winsound
 score=0
 playerscore=0
 aiscore=0
+winsound.PlaySound('newgame.wav', winsound.SND_FILENAME)
 while aiscore<7>playerscore:
 	print("New Game of Mocha's Love Letter Sim!")
+	winsound.PlaySound('round.wav', winsound.SND_FILENAME)
 
 	deck=['Princess','Countess','King']+['Prince']*2+['Handmaid']*2+['Baron']*2+['Priest']*2+['Guard']*5
 	player=[]
@@ -45,6 +47,7 @@ while aiscore<7>playerscore:
 		print("Your hand:",player)
 		print("Discard:",discard)
 		#check to see if a king or prince forces a countess:
+		winsound.PlaySound('choose.wav', winsound.SND_FILENAME)
 		if 'Countess' in player and ('King' in player or 'Prince' in player):
 			choice='Countess'
 		#else choose
@@ -59,6 +62,7 @@ while aiscore<7>playerscore:
 		if protectai==0:
 			if choice=='Guard':
 				#guess the ai's card
+				winsound.PlaySound('guard.wav', winsound.SND_FILENAME)
 				guess='Guard'
 				while guess=='Guard':
 					guess=input('Guess the card in the AI\'s deck: ')
@@ -68,8 +72,10 @@ while aiscore<7>playerscore:
 				else:
 					print('Wrong!')
 			elif choice=='Priest':
+				winsound.PlaySound('priest.wav', winsound.SND_FILENAME)
 				print('AI\'s deck:',ai)
 			elif choice=='Baron':
+				winsound.PlaySound('baron.wav', winsound.SND_FILENAME)
 				if 'Princess' in player:
 					winner='Player'
 					break
@@ -114,9 +120,8 @@ while aiscore<7>playerscore:
 					break
 				else:
 					print("There was a tie! Play resumes!")
-			elif choice=='Handmaid':
-				protectplayer=1
 			elif choice=='Prince':
+				winsound.PlaySound('prince.wav', winsound.SND_FILENAME)
 				discard+=ai
 				print('AI discards',ai[0])
 				del ai[0]
@@ -124,10 +129,15 @@ while aiscore<7>playerscore:
 				ai+=[deck[draw]]
 				del deck[draw]
 			elif choice=='King':
+				winsound.PlaySound('king.wav', winsound.SND_FILENAME)
 				temp=player
 				player=ai
 				ai=temp
+		elif choice=='Handmaid':
+			winsound.PlaySound('handmaid.wav', winsound.SND_FILENAME)
+			protectplayer=1
 		elif choice=='Princess':
+			winsound.PlaySound('princess.wav', winsound.SND_FILENAME)
 			winner='AI'
 			break
 		#AI's turn~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -138,6 +148,7 @@ while aiscore<7>playerscore:
 			ai+=[deck[danda]]
 			del deck[danda]
 			#check to see if a king or prince forces a countess:
+			winsound.PlaySound('aichoose.wav', winsound.SND_FILENAME)
 			if 'Countess' in ai and ('King' in ai or 'Prince' in ai):
 				choice='Countess'
 			#else choose
@@ -165,6 +176,7 @@ while aiscore<7>playerscore:
 			print('AI discards the',choice)
 			if protectplayer==0:
 				if choice=='Guard':
+					winsound.PlaySound('guard.wav', winsound.SND_FILENAME)
 					guess='Guard'
 					while guess=='Guard':
 						#guess the player's card - this is kinda cheating but it's simple
@@ -175,9 +187,11 @@ while aiscore<7>playerscore:
 					else:
 						print('AI Guessed wrong!')
 				elif choice=='Priest':
+					winsound.PlaySound('priest.wav', winsound.SND_FILENAME)
 					#print('Player\'s deck:',player)
-					pass
+					winsound.PlaySound('priest2.wav', winsound.SND_FILENAME)
 				elif choice=='Baron':
+					winsound.PlaySound('baron.wav', winsound.SND_FILENAME)
 					if 'Princess' in player:
 						winner='Player'
 						break
@@ -222,9 +236,8 @@ while aiscore<7>playerscore:
 						break
 					else:
 						print("There was a tie! Play resumes!")
-				elif choice=='Handmaid':
-					protectai=1
 				elif choice=='Prince':
+					winsound.PlaySound('prince.wav', winsound.SND_FILENAME)
 					discard+=player
 					print('Player discards',player[0])
 					del player[0]
@@ -232,10 +245,15 @@ while aiscore<7>playerscore:
 					player+=[deck[draw]]
 					del deck[draw]
 				elif choice=='King':
+					winsound.PlaySound('king.wav', winsound.SND_FILENAME)
 					temp=player
 					player=ai
 					ai=temp
+			elif choice=='Handmaid':
+				winsound.PlaySound('handmaid.wav', winsound.SND_FILENAME)
+				protectai=1
 			elif choice=='Princess':
+				winsound.PlaySound('princess.wav', winsound.SND_FILENAME)
 				winner='Player'
 				break
 		else:break

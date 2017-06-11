@@ -256,6 +256,6 @@ while aiscore<7>playerscore:
 		if winner!=False:print(winner,'wins!')
 		else:print('Tie!')
 	if winner=='Player':playerscore+=1
-	elif winner='AI':aiscore+=1
-if playerscore==7:print('Player is first to 7!')
-else:print('AI is first to 7!')
+	elif winner=='AI':aiscore+=1
+if playerscore==7:print('Player is first to 7! ( AI had',aiscore,')')
+else:print('AI is first to 7! ( You had',playerscore,')')

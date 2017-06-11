@@ -218,7 +218,7 @@ while aiscore<7>playerscore:
 						winner='AI'
 						break
 					else:
-						print('AI Guessed wrong!')
+						print('AI Guessed wrong:',guess)
 				elif choice=='Priest':
 					winsound.PlaySound('priest.wav', winsound.SND_FILENAME)
 					#print('Player\'s deck:',player)

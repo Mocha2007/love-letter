@@ -162,7 +162,7 @@ while aiscore<7>playerscore:
 			#move card from hand to discard
 			ai.remove(choice)
 			discard+=[choice]
-			print('AI discard the',choice)
+			print('AI discards the',choice)
 			if protectplayer==0:
 				if choice=='Guard':
 					guess='Guard'

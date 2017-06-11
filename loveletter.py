@@ -57,6 +57,8 @@ while len(deck)>0:
 			if guess in ai:
 				winner='Player'
 				break
+			else:
+				print('Wrong!')
 		elif choice=='Priest':
 			print('AI\'s deck:',ai)
 		elif choice=='Baron':
@@ -78,41 +80,41 @@ while len(deck)>0:
 			elif 'King' in ai:
 				winner='AI'
 				break
-			elif 'Prince' in player and not in ai:
+			elif 'Prince' in player and 'Prince' not in ai:
 				winner='Player'
 				break
-			elif 'Prince' in ai and not in player:
+			elif 'Prince' in ai and 'Prince' not in player:
 				winner='AI'
 				break
-			elif 'Handmaid' in player and not in ai:
+			elif 'Handmaid' in player and 'Handmaid' not in ai:
 				winner='Player'
 				break
-			elif 'Handmaid' in ai and not in player:
+			elif 'Handmaid' in ai and 'Handmaid' not in player:
 				winner='AI'
 				break
-			elif 'Baron' in player and not in ai:
+			elif 'Baron' in player and 'Baron' not in ai:
 				winner='Player'
 				break
-			elif 'Baron' in ai and not in player:
+			elif 'Baron' in ai and 'Baron' not in player:
 				winner='AI'
 				break
-			elif 'Priest' in player and not in ai:
+			elif 'Priest' in player and 'Priest' not in ai:
 				winner='Player'
 				break
-			elif 'Priest' in ai and not in player:
+			elif 'Priest' in ai and 'Priest' not in player:
 				winner='AI'
 				break
 			else:
 				print("There was a tie! Play resumes!")
 		elif choice=='Handmaid':
 			protectplayer=1
-		elif choice=='Prince'
+		elif choice=='Prince':
 			discard+=ai
 			del ai[0]
 			draw=random.randint(0,len(deck)-1)
 			ai+=deck[draw]
 			del deck[draw]
-		elif choice=='King'
+		elif choice=='King':
 			temp=player
 			player=ai
 			ai=temp
@@ -121,3 +123,4 @@ while len(deck)>0:
 		break
 	#AI's turn
 	input("END OF TEST")
+print(winner,'wins!')

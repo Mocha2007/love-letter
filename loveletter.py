@@ -124,7 +124,7 @@ while aiscore<7>playerscore:
 			elif choice=='Prince':
 				winsound.PlaySound('prince.wav', winsound.SND_FILENAME)
 				discard+=ai
-				print('AI discards',ai[0])
+				print('AI discards the',ai[0])
 				del ai[0]
 				draw=random.randint(0,len(deck)-1)
 				ai+=[deck[draw]]

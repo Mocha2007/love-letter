@@ -226,7 +226,7 @@ while aiscore<7>playerscore:
 					protectai=1
 				elif choice=='Prince':
 					discard+=player
-                                        print('Player discards',player[0])
+					print('Player discards',player[0])
 					del player[0]
 					draw=random.randint(0,len(deck)-1)
 					player+=[deck[draw]]

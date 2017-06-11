@@ -79,6 +79,7 @@ while 1:
 					print('AI\'s deck:',ai)
 				elif choice=='Baron':
 					winsound.PlaySound('baron.wav', winsound.SND_FILENAME)
+					print(player[0],'v.',ai[0])
 					if 'Princess' in player:
 						winner='Player'
 						break
@@ -234,6 +235,7 @@ while 1:
 						winsound.PlaySound('priest2.wav', winsound.SND_FILENAME)
 					elif choice=='Baron':
 						winsound.PlaySound('baron.wav', winsound.SND_FILENAME)
+						print(player[0],'v.',ai[0])
 						if 'Princess' in player:
 							winner='Player'
 							break

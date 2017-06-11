@@ -212,10 +212,10 @@ while 1:
 						choice='Handmaid'
 					elif 'Prince' in ai:
 						choice='Prince'
-					elif 'King' in ai:
-						choice='King'
 					elif 'Baron' in ai:
 						choice='Baron'
+					elif 'King' in ai:
+						choice='King'
 					else:
 						choice='Countess'
 				#move card from hand to discard

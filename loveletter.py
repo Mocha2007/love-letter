@@ -124,14 +124,18 @@ while 1:
 						print("There was a tie! Play resumes!")
 				elif choice=='Prince':
 					winsound.PlaySound('prince.wav', winsound.SND_FILENAME)
-					discard+=ai
-					print('AI discards the',ai[0])
 					if ai[0]=='Princess':
 						winner='Player'
 						break
-					del ai[0]
-					draw=random.randint(0,len(deck)-1)
-					ai+=[deck[draw]]
+					try:
+                                                draw=random.randint(0,len(deck)-1)
+                                                print('AI discards the',ai[0])
+                                                discard+=ai
+                                                del ai[0]
+                                                ai+=[deck[draw]]
+                                        except:#game over if deck runs out
+                                                break
+					
 					del deck[draw]
 				elif choice=='King':
 					winsound.PlaySound('king.wav', winsound.SND_FILENAME)
@@ -153,6 +157,7 @@ while 1:
 				ai+=[deck[danda]]
 				del deck[danda]
 				#check to see if a king or prince forces a countess:
+				print('AI is choosing...')
 				winsound.PlaySound('aichoose.wav', winsound.SND_FILENAME)
 				if 'Countess' in ai and ('King' in ai or 'Prince' in ai):
 					choice='Countess'

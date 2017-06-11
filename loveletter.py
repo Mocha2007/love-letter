@@ -5,7 +5,7 @@ playerscore=0
 aiscore=0
 winsound.PlaySound('newgame.wav', winsound.SND_FILENAME)
 while aiscore<7>playerscore:
-	print("New Game of Mocha's Love Letter Sim!",playerscore,"-",aiscore)
+	print("New Round of Mocha's Love Letter Sim!",playerscore,"-",aiscore)
 	winsound.PlaySound('round.wav', winsound.SND_FILENAME)
 
 	deck=['Princess','Countess','King']+['Prince']*2+['Handmaid']*2+['Baron']*2+['Priest']*2+['Guard']*5

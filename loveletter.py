@@ -288,14 +288,17 @@ while 1:
 							print("There was a tie! Play resumes!")
 					elif choice=='Prince':
 						winsound.PlaySound('prince.wav', winsound.SND_FILENAME)
-						discard+=player
-						print('Player discards',player[0])
 						if player[0]=='Princess':
 							winner='AI'
 							break
-						del player[0]
-						draw=random.randint(0,len(deck)-1)
-						player+=[deck[draw]]
+						try:
+							draw=random.randint(0,len(deck)-1)
+							print('Player discards the',player[0])
+							discard+=player
+							del player[0]
+							player+=[deck[draw]]
+						except:#game over if deck runs out
+							break
 						del deck[draw]
 					elif choice=='King':
 						winsound.PlaySound('king.wav', winsound.SND_FILENAME)

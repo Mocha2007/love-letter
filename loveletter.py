@@ -279,3 +279,5 @@ while aiscore<7>playerscore:
 	elif winner=='AI':aiscore+=1
 if playerscore==7:print('Player is first to 7! ( AI had',aiscore,')')
 else:print('AI is first to 7! ( You had',playerscore,')')
+while 1:
+	input()

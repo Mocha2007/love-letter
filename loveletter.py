@@ -65,8 +65,8 @@ while 1:
 				if choice=='Guard':
 					#guess the ai's card
 					winsound.PlaySound('guard.wav', winsound.SND_FILENAME)
-					guess='Guard'
-					while guess=='Guard':
+					guess=0
+					while guess not in ['Princess','Countess','King','Prince','Handmaid','Baron','Priest']:
 						guess=input('Guess the card in the AI\'s deck: ')
 					if guess in ai:
 						winner='Player'

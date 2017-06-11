@@ -12,7 +12,7 @@ while aiscore<7>playerscore:
 	player=[]
 	ai=[]
 	discard=[]
-	winner=None
+	winner=0
 
 	#discard 1 wholly
 	del deck[random.randint(0,15)]

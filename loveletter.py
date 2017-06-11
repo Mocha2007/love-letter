@@ -52,6 +52,10 @@ while 1:
 			winsound.PlaySound('choose.wav', winsound.SND_FILENAME)
 			if 'Countess' in player and ('King' in player or 'Prince' in player):
 				choice='Countess'
+			elif 'Princess' in player:
+                                for i in player:
+                                        if i!='Princess':
+                                                choice=i
 			#else choose
 			else:
 				choice=0

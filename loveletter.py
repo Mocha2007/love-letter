@@ -1,5 +1,8 @@
 import random
-while 1:
+score=0
+playerscore=0
+aiscore=0
+while aiscore<7>playerscore:
 	print("New Game of Mocha's Love Letter Sim!")
 
 	deck=['Princess','Countess','King']+['Prince']*2+['Handmaid']*2+['Baron']*2+['Priest']*2+['Guard']*5
@@ -252,3 +255,7 @@ while 1:
 		elif 'Priest' in ai and 'Priest' not in player:winner='AI'
 		if winner!=False:print(winner,'wins!')
 		else:print('Tie!')
+	if winner=='Player':playerscore+=1
+	elif winner='AI':aiscore+=1
+if playerscore==7:print('Player is first to 7!')
+else:print('AI is first to 7!')

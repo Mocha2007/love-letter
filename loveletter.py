@@ -57,6 +57,7 @@ while 1:
 					if i!='Princess':
 						choice=i
 						break
+                        elif player[0]==player[1]:choice=player[0]
 			#else choose
 			else:
 				choice=0

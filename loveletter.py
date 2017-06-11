@@ -23,7 +23,7 @@ danda=random.randint(0,11)
 player+=[deck[danda]]
 del deck[danda]
 danda=random.randint(0,10)
-player+=[deck[danda]]
+ai+=[deck[danda]]
 del deck[danda]
 
 #protection init
@@ -50,6 +50,7 @@ while len(deck)>0:
 	#move card from hand to discard
 	player.remove(choice)
 	discard+=[choice]
+	print('You discarded the',choice)
 	if protectai==0:
 		if choice=='Guard':
 			#guess the ai's card
@@ -112,7 +113,7 @@ while len(deck)>0:
 			discard+=ai
 			del ai[0]
 			draw=random.randint(0,len(deck)-1)
-			ai+=deck[draw]
+			ai+=[deck[draw]]
 			del deck[draw]
 		elif choice=='King':
 			temp=player
@@ -121,6 +122,113 @@ while len(deck)>0:
 	elif choice=='Princess':
 		winner='AI'
 		break
-	#AI's turn
-	input("END OF TEST")
-print(winner,'wins!')
+	#AI's turn~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	if deck!=[]:
+		protectai=0
+		#draw
+		danda=random.randint(0,len(deck)-1)
+		ai+=[deck[danda]]
+		del deck[danda]
+		#check to see if a king or prince forces a countess:
+		if 'Countess' in ai and ('King' in ai or 'Prince' in ai):
+			choice='Countess'
+		#else choose
+		else:
+			#choose the LOWEST value card
+			if 'Guard' in ai:
+				choice='Guard'
+			elif 'Priest' in ai:
+				choice='Priest'
+			elif 'Baron' in ai and ('Prince' in ai or 'King' in ai or 'Countess' in ai or 'Princess' in ai):#will only discard with prince+
+				choice='Baron'
+			elif 'Handmaid' in ai:
+				choice='Handmaid'
+			elif 'Prince' in ai:
+				choice='Prince'
+			elif 'King' in ai:
+				choice='King'
+			elif 'Baron' in ai:
+				choice='Baron'
+			else:
+				choice='Countess'
+		#move card from hand to discard
+		ai.remove(choice)
+		discard+=[choice]
+		print('AI discard the',choice)
+		if protectplayer==0:
+			if choice=='Guard':
+				#guess the player's card - this is kinda cheating but it's simple
+				guess=random.choice(player+deck)
+				if guess in player:
+					winner='AI'
+					break
+				else:
+					print('AI Guessed wrong!')
+			elif choice=='Priest':
+				#print('Player\'s deck:',player)
+				pass
+			elif choice=='Baron':
+				if 'Princess' in player:
+					winner='Player'
+					break
+				elif 'Princess' in ai:
+					winner='AI'
+					break
+				elif 'Countess' in player:
+					winner='Player'
+					break
+				elif 'Countess' in ai:
+					winner='AI'
+					break
+				elif 'King' in player:
+					winner='Player'
+					break
+				elif 'King' in ai:
+					winner='AI'
+					break
+				elif 'Prince' in player and 'Prince' not in ai:
+					winner='Player'
+					break
+				elif 'Prince' in ai and 'Prince' not in player:
+					winner='AI'
+					break
+				elif 'Handmaid' in player and 'Handmaid' not in ai:
+					winner='Player'
+					break
+				elif 'Handmaid' in ai and 'Handmaid' not in player:
+					winner='AI'
+					break
+				elif 'Baron' in player and 'Baron' not in ai:
+					winner='Player'
+					break
+				elif 'Baron' in ai and 'Baron' not in player:
+					winner='AI'
+					break
+				elif 'Priest' in player and 'Priest' not in ai:
+					winner='Player'
+					break
+				elif 'Priest' in ai and 'Priest' not in player:
+					winner='AI'
+					break
+				else:
+					print("There was a tie! Play resumes!")
+			elif choice=='Handmaid':
+				protectai=1
+			elif choice=='Prince':
+				discard+=player
+				del player[0]
+				draw=random.randint(0,len(deck)-1)
+				player+=[deck[draw]]
+				del deck[draw]
+			elif choice=='King':
+				temp=player
+				player=ai
+				ai=temp
+		elif choice=='Princess':
+			winner='Player'
+			break
+	else:break
+if winner!=0:print(winner,'wins!')
+else:
+	#figure out who got better cards
+	print('huehg')

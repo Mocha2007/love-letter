@@ -55,6 +55,7 @@ while 1:
 			#else choose
 			else:
 				choice=0
+				if protectai==1:print("AI is currently PROTECTED")
 				while choice not in player:
 					choice=input("Choose a card to discard: ")
 			#move card from hand to discard

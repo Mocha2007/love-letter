@@ -81,7 +81,7 @@ while 1:
 						print('Wrong!')
 				elif choice=='Priest':
 					winsound.PlaySound('priest.wav', winsound.SND_FILENAME)
-					print('AI\'s deck:',ai)
+					print('AI\'s hand:',ai[0])
 				elif choice=='Baron':
 					winsound.PlaySound('baron.wav', winsound.SND_FILENAME)
 					print(player[0],'v.',ai[0])

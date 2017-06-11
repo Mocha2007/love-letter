@@ -1,4 +1,5 @@
 import random,winsound
+from statistics import median
 score=0
 playerscore=0
 aiscore=0
@@ -133,7 +134,7 @@ while aiscore<7>playerscore:
 				temp=player
 				player=ai
 				ai=temp
-		elif choice=='Handmaid':
+		if choice=='Handmaid':
 			winsound.PlaySound('handmaid.wav', winsound.SND_FILENAME)
 			protectplayer=1
 		elif choice=='Princess':
@@ -153,12 +154,44 @@ while aiscore<7>playerscore:
 				choice='Countess'
 			#else choose
 			else:
+				#determines median-valued card in deck & player hand
+				values=[]
+				aimax=0#aside from baron cards
+				#checks baron first
+				if 'Baron' in ai:
+					for i in player:
+						if i=='Guard':values+=[1]
+						if i=='Priest':values+=[2]
+						if i=='Baron':values+=[3]
+						if i=='Handmaid':values+=[4]
+						if i=='Prince':values+=[5]
+						if i=='King':values+=[6]
+						if i=='Countess':values+=[7]
+						if i=='Princess':values+=[8]
+					for i in deck:
+						if i=='Guard':values+=[1]
+						if i=='Priest':values+=[2]
+						if i=='Baron':values+=[3]
+						if i=='Handmaid':values+=[4]
+						if i=='Prince':values+=[5]
+						if i=='King':values+=[6]
+						if i=='Countess':values+=[7]
+						if i=='Princess':values+=[8]
+					for i in ai:
+						if 'Princess' in ai:aimax=8
+						elif 'Countess' in ai:aimax=7
+						elif 'King' in ai:aimax=6
+						elif 'Prince' in ai:aimax=5
+						elif 'Handmaid' in ai:aimax=4
+						elif 'Priest' in ai:aimax=2
+						elif 'Guard' in ai:aimax=1
+					if aimax>median(values):choice='Baron'#will only discard with a >50% chance or player protection
 				#choose the LOWEST value card
 				if 'Guard' in ai:
 					choice='Guard'
 				elif 'Priest' in ai:
 					choice='Priest'
-				elif 'Baron' in ai and ('Prince' in ai or 'King' in ai or 'Countess' in ai or 'Princess' in ai):#will only discard with prince+
+				elif 'Baron' in ai and protectplayer==1:#will only discard with a >50% chance or player protection
 					choice='Baron'
 				elif 'Handmaid' in ai:
 					choice='Handmaid'
@@ -249,7 +282,7 @@ while aiscore<7>playerscore:
 					temp=player
 					player=ai
 					ai=temp
-			elif choice=='Handmaid':
+			if choice=='Handmaid':
 				winsound.PlaySound('handmaid.wav', winsound.SND_FILENAME)
 				protectai=1
 			elif choice=='Princess':

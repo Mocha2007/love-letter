@@ -126,8 +126,8 @@ while aiscore<7>playerscore:
 				discard+=ai
 				print('AI discards the',ai[0])
 				if ai[0]=='Princess':
-                                        winner='Player'
-                                        break
+					winner='Player'
+					break
 				del ai[0]
 				draw=random.randint(0,len(deck)-1)
 				ai+=[deck[draw]]
@@ -277,8 +277,8 @@ while aiscore<7>playerscore:
 					discard+=player
 					print('Player discards',player[0])
 					if player[0]=='Princess':
-                                                winner='AI'
-                                                break
+						winner='AI'
+						break
 					del player[0]
 					draw=random.randint(0,len(deck)-1)
 					player+=[deck[draw]]

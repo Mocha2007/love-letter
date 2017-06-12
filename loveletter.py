@@ -16,7 +16,9 @@ while 1:
 		winner=0
 
 		#discard 1 wholly
-		del deck[random.randint(0,15)]
+		numya=random.randint(0,15)
+		numyo=[deck[numya]]
+		del deck[numya]
 		#reveal 3
 		delenda=random.randint(0,14)
 		discard+=[deck[delenda]]
@@ -38,6 +40,8 @@ while 1:
 		#protection init
 		protectai=0
 		protectplayer=0
+
+		lastseen=0
 		while len(deck)>0:
 			#player goes first
 			protectplayer=0
@@ -67,6 +71,7 @@ while 1:
 			#move card from hand to discard
 			player.remove(choice)
 			discard+=[choice]
+			if choice==lastseen:lastseen=0
 			print('You discarded the',choice)
 			if protectai==0:
 				if choice=='Guard':
@@ -189,6 +194,15 @@ while 1:
 							if i=='King':values+=[6]
 							if i=='Countess':values+=[7]
 							if i=='Princess':values+=[8]
+						for i in numyo:
+							if i=='Guard':values+=[1]
+							if i=='Priest':values+=[2]
+							if i=='Baron':values+=[3]
+							if i=='Handmaid':values+=[4]
+							if i=='Prince':values+=[5]
+							if i=='King':values+=[6]
+							if i=='Countess':values+=[7]
+							if i=='Princess':values+=[8]
 						for i in ai:
 							if 'Princess' in ai:aimax=8
 							elif 'Countess' in ai:aimax=7
@@ -223,9 +237,11 @@ while 1:
 					if choice=='Guard':
 						winsound.PlaySound('guard.wav', winsound.SND_FILENAME)
 						guess='Guard'
-						while guess=='Guard':
-							#guess the player's card - this is kinda cheating but it's simple
-							guess=random.choice(player+deck)
+						if lastseen!=0:guess=lastseen
+						else:
+							while guess=='Guard':
+								#guess the player's card - this is kinda cheating but it's simple
+								guess=random.choice(player+deck+numyo)
 						if guess in player:
 							winner='AI'
 							break
@@ -234,6 +250,7 @@ while 1:
 					elif choice=='Priest':
 						winsound.PlaySound('priest.wav', winsound.SND_FILENAME)
 						#print('Player\'s deck:',player)
+						lastseen=player[0]
 						winsound.PlaySound('priest2.wav', winsound.SND_FILENAME)
 					elif choice=='Baron':
 						winsound.PlaySound('baron.wav', winsound.SND_FILENAME)

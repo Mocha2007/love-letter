@@ -12,6 +12,23 @@ def sfxguard():
 	file=random.choice(['guard.wav','guard2.wav','guard3.wav'])
 	wait()
 	queue(file)
+#def sfxpriest()
+def sfxbaron():
+	file=random.choice(['baron.wav'])
+	wait()
+	queue(file)
+def sfxhandmaid():
+	file=random.choice(['handmaid.wav'])
+	wait()
+	queue(file)
+def sfxprince():
+	file=random.choice(['prince.wav'])
+	wait()
+	queue(file)
+def sfxking():
+	file=random.choice(['king.wav'])
+	wait()
+	queue(file)
 while 1:
 	score=0
 	playerscore=0
@@ -100,8 +117,7 @@ while 1:
 					queue('priest.wav')
 					print('AI\'s hand:',ai[0])
 				elif choice=='Baron':
-					wait()
-					queue('baron.wav')
+					sfxbaron()
 					print(player[0],'v.',ai[0])
 					if 'Princess' in player:
 						winner='Player'
@@ -148,8 +164,7 @@ while 1:
 					else:
 						print("There was a tie! Play resumes!")
 				elif choice=='Prince':
-					wait()
-					queue('prince.wav')
+					sfxprince()
 					if ai[0]=='Princess':
 						winner='Player'
 						break
@@ -163,15 +178,13 @@ while 1:
 						break
 					del deck[draw]
 				elif choice=='King':
-					wait()
-					queue('king.wav')
+					sfxking()
 					temp=player
 					player=ai
 					ai=temp
 					lastseen=player[0]
 			if choice=='Handmaid':
-				wait()
-				queue('handmaid.wav')
+				sfxhandmaid()
 				protectplayer=1
 			#AI's turn~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			if deck!=[]:
@@ -273,8 +286,7 @@ while 1:
 						lastseen=player[0]
 						queue('priest2.wav')
 					elif choice=='Baron':
-						wait()
-						queue('baron.wav')
+						sfxbaron()
 						print(player[0],'v.',ai[0])
 						if 'Princess' in player:
 							winner='Player'
@@ -321,8 +333,7 @@ while 1:
 						else:
 							print("There was a tie! Play resumes!")
 					elif choice=='Prince':
-						wait()
-						queue('prince.wav')
+						sfxprince()
 						if player[0]=='Princess':
 							winner='AI'
 							break
@@ -336,15 +347,13 @@ while 1:
 							break
 						del deck[draw]
 					elif choice=='King':
-						wait()
-						queue('king.wav')
+						sfxking()
 						temp=player
 						player=ai
 						ai=temp
 						lastseen=player[0]
 				if choice=='Handmaid':
-					wait()
-					queue('handmaid.wav')
+					sfxhandmaid()
 					protectai=1
 			else:break
 		if winner!=0:print(winner,'wins!')

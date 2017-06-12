@@ -12,7 +12,10 @@ def sfxguard():
 	file=random.choice(['guard.wav','guard2.wav','guard3.wav'])
 	wait()
 	queue(file)
-#def sfxpriest()
+def sfxpriest():
+	file=random.choice(['priest.wav','priest2.wav'])
+	wait()
+	queue(file)
 def sfxbaron():
 	file=random.choice(['baron.wav'])
 	wait()
@@ -113,8 +116,7 @@ while 1:
 					else:
 						print('Wrong!')
 				elif choice=='Priest':
-					wait()
-					queue('priest.wav')
+					sfxpriest()
 					print('AI\'s hand:',ai[0])
 				elif choice=='Baron':
 					sfxbaron()
@@ -280,11 +282,9 @@ while 1:
 						else:
 							print('AI Guessed wrong:',guess)
 					elif choice=='Priest':
-						wait()
-						queue('priest.wav')
+						sfxpriest()
 						#print('Player\'s deck:',player)
 						lastseen=player[0]
-						queue('priest2.wav')
 					elif choice=='Baron':
 						sfxbaron()
 						print(player[0],'v.',ai[0])
@@ -378,4 +378,4 @@ while 1:
 		elif winner=='AI':aiscore+=1
 	if playerscore==7:print('Player is first to 7! ( AI had',aiscore,')')
 	else:print('AI is first to 7! ( You had',playerscore,')')
-	input()
+	input("-"*20)

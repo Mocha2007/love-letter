@@ -1,8 +1,8 @@
 import random,winsound
 from statistics import median
 def sfxguard():
-        file=random.choice(['guard.wav','guard2.wav','guard3.wav'])
-        winsound.PlaySound(file, winsound.SND_FILENAME)
+	file=random.choice(['guard.wav','guard2.wav','guard3.wav'])
+	winsound.PlaySound(file, winsound.SND_FILENAME)
 while 1:
 	score=0
 	playerscore=0
@@ -23,15 +23,10 @@ while 1:
 		numyo=[deck[numya]]
 		del deck[numya]
 		#reveal 3
-		delenda=random.randint(0,14)
-		discard+=[deck[delenda]]
-		del deck[delenda]
-		delenda=random.randint(0,13)
-		discard+=[deck[delenda]]
-		del deck[delenda]
-		delenda=random.randint(0,12)
-		discard+=[deck[delenda]]
-		del deck[delenda]
+		for i in range(3):
+			delenda=random.randint(0,len(deck)-1)
+			discard+=[deck[delenda]]
+			del deck[delenda]
 		#1 card to each player
 		danda=random.randint(0,11)
 		player+=[deck[danda]]
@@ -157,6 +152,7 @@ while 1:
 					temp=player
 					player=ai
 					ai=temp
+					lastseen=player[0]
 			if choice=='Handmaid':
 				winsound.PlaySound('handmaid.wav', winsound.SND_FILENAME)
 				protectplayer=1
@@ -169,6 +165,8 @@ while 1:
 				del deck[danda]
 				#check to see if a king or prince forces a countess:
 				print('AI is choosing...')
+				if lastseen!=0:#DEBUG
+					print("I know your hand is the",lastseen,">:3")#DEBUG
 				winsound.PlaySound('aichoose.wav', winsound.SND_FILENAME)
 				if 'Countess' in ai and ('King' in ai or 'Prince' in ai):
 					choice='Countess'
@@ -321,6 +319,7 @@ while 1:
 						temp=player
 						player=ai
 						ai=temp
+						lastseen=player[0]
 				if choice=='Handmaid':
 					winsound.PlaySound('handmaid.wav', winsound.SND_FILENAME)
 					protectai=1

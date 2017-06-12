@@ -2,7 +2,7 @@ import random,winsound
 from statistics import median
 def sfxguard():
 	file=random.choice(['guard.wav','guard2.wav','guard3.wav'])
-	winsound.PlaySound(file, winsound.SND_ASYNC)
+	winsound.PlaySound(file,winsound.SND_ASYNC)
 while 1:
 	score=0
 	playerscore=0
@@ -51,7 +51,7 @@ while 1:
 			print("Your hand:",player)
 			print("Discard:",discard)
 			#check to see if a king or prince forces a countess:
-			winsound.PlaySound('choose.wav', winsound.SND_ASYNC)
+			winsound.PlaySound('choose.wav',winsound.SND_ASYNC)
 			if 'Countess' in player and ('King' in player or 'Prince' in player):
 				choice='Countess'
 			elif 'Princess' in player:

@@ -1,5 +1,8 @@
 import random,winsound
 from statistics import median
+def sfxguard():
+        file=random.choice(['guard.wav','guard2.wav','guard3.wav'])
+        winsound.PlaySound(file, winsound.SND_FILENAME)
 while 1:
 	score=0
 	playerscore=0
@@ -76,7 +79,7 @@ while 1:
 			if protectai==0:
 				if choice=='Guard':
 					#guess the ai's card
-					winsound.PlaySound('guard.wav', winsound.SND_FILENAME)
+					sfxguard()
 					guess=0
 					while guess not in ['Princess','Countess','King','Prince','Handmaid','Baron','Priest']:
 						guess=input('Guess the card in the AI\'s deck: ')
@@ -235,7 +238,7 @@ while 1:
 				print('AI discards the',choice)
 				if protectplayer==0:
 					if choice=='Guard':
-						winsound.PlaySound('guard.wav', winsound.SND_FILENAME)
+						sfxguard()
 						guess='Guard'
 						if lastseen!=0:guess=lastseen
 						else:

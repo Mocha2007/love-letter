@@ -3,18 +3,24 @@ from statistics import median
 pygame.mixer.init()
 pygame.mixer.Sound('mus.wav').play(-1).set_volume(1/6)
 pygame.mixer.Channel(1)
-def sfxguard():
-	file=random.choice(['guard.wav','guard2.wav','guard3.wav'])
-	pygame.mixer.Sound(file).play()
+def wait():
+	while pygame.mixer.Channel(1).get_queue()!=None:
+		pass
 def queue(filename):
         pygame.mixer.Channel(1).queue(pygame.mixer.Sound(filename))
+def sfxguard():
+	file=random.choice(['guard.wav','guard2.wav','guard3.wav'])
+	wait()
+	queue(file)
 while 1:
 	score=0
 	playerscore=0
 	aiscore=0
+	wait()
 	queue('newgame.wav')
 	while aiscore<7>playerscore:
 		print("New Round of Mocha's Love Letter Sim!",playerscore,"-",aiscore)
+		wait()
 		queue('round.wav')
 
 		deck=['Princess','Countess','King']+['Prince']*2+['Handmaid']*2+['Baron']*2+['Priest']*2+['Guard']*5
@@ -56,7 +62,8 @@ while 1:
 			print("Your hand:",player)
 			print("Discard:",discard)
 			#check to see if a king or prince forces a countess:
-			#queue('choose.wav')
+			wait()
+			queue('choose.wav')
 			if 'Countess' in player and ('King' in player or 'Prince' in player):
 				choice='Countess'
 			elif 'Princess' in player:
@@ -89,9 +96,11 @@ while 1:
 					else:
 						print('Wrong!')
 				elif choice=='Priest':
+					wait()
 					queue('priest.wav')
 					print('AI\'s hand:',ai[0])
 				elif choice=='Baron':
+					wait()
 					queue('baron.wav')
 					print(player[0],'v.',ai[0])
 					if 'Princess' in player:
@@ -139,6 +148,7 @@ while 1:
 					else:
 						print("There was a tie! Play resumes!")
 				elif choice=='Prince':
+					wait()
 					queue('prince.wav')
 					if ai[0]=='Princess':
 						winner='Player'
@@ -153,12 +163,14 @@ while 1:
 						break
 					del deck[draw]
 				elif choice=='King':
+					wait()
 					queue('king.wav')
 					temp=player
 					player=ai
 					ai=temp
 					lastseen=player[0]
 			if choice=='Handmaid':
+				wait()
 				queue('handmaid.wav')
 				protectplayer=1
 			#AI's turn~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -172,6 +184,7 @@ while 1:
 				print('AI is choosing...')
 				if lastseen!=0:#DEBUG
 					print("I know your hand is the",lastseen,">:3")#DEBUG
+				wait()
 				queue('aichoose.wav')
 				if 'Countess' in ai and ('King' in ai or 'Prince' in ai):
 					choice='Countess'
@@ -254,11 +267,13 @@ while 1:
 						else:
 							print('AI Guessed wrong:',guess)
 					elif choice=='Priest':
+						wait()
 						queue('priest.wav')
 						#print('Player\'s deck:',player)
 						lastseen=player[0]
 						queue('priest2.wav')
 					elif choice=='Baron':
+						wait()
 						queue('baron.wav')
 						print(player[0],'v.',ai[0])
 						if 'Princess' in player:
@@ -306,6 +321,7 @@ while 1:
 						else:
 							print("There was a tie! Play resumes!")
 					elif choice=='Prince':
+						wait()
 						queue('prince.wav')
 						if player[0]=='Princess':
 							winner='AI'
@@ -320,12 +336,14 @@ while 1:
 							break
 						del deck[draw]
 					elif choice=='King':
+						wait()
 						queue('king.wav')
 						temp=player
 						player=ai
 						ai=temp
 						lastseen=player[0]
 				if choice=='Handmaid':
+					wait()
 					queue('handmaid.wav')
 					protectai=1
 			else:break

@@ -152,10 +152,6 @@ while 1:
 			if choice=='Handmaid':
 				winsound.PlaySound('handmaid.wav', winsound.SND_FILENAME)
 				protectplayer=1
-			elif choice=='Princess':
-				winsound.PlaySound('princess.wav', winsound.SND_FILENAME)
-				winner='AI'
-				break
 			#AI's turn~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			if deck!=[]:
 				protectai=0
@@ -308,10 +304,6 @@ while 1:
 				if choice=='Handmaid':
 					winsound.PlaySound('handmaid.wav', winsound.SND_FILENAME)
 					protectai=1
-				elif choice=='Princess':
-					winsound.PlaySound('princess.wav', winsound.SND_FILENAME)
-					winner='Player'
-					break
 			else:break
 		if winner!=0:print(winner,'wins!')
 		else:

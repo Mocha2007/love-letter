@@ -221,32 +221,11 @@ while 1:
 					#checks baron first
 					if 'Baron' in ai:
 						for i in player:
-							if i=='Guard':values+=[1]
-							if i=='Priest':values+=[2]
-							if i=='Baron':values+=[3]
-							if i=='Handmaid':values+=[4]
-							if i=='Prince':values+=[5]
-							if i=='King':values+=[6]
-							if i=='Countess':values+=[7]
-							if i=='Princess':values+=[8]
+							values+=[value(i)]
 						for i in deck:
-							if i=='Guard':values+=[1]
-							if i=='Priest':values+=[2]
-							if i=='Baron':values+=[3]
-							if i=='Handmaid':values+=[4]
-							if i=='Prince':values+=[5]
-							if i=='King':values+=[6]
-							if i=='Countess':values+=[7]
-							if i=='Princess':values+=[8]
+							values+=[value(i)]
 						for i in numyo:
-							if i=='Guard':values+=[1]
-							if i=='Priest':values+=[2]
-							if i=='Baron':values+=[3]
-							if i=='Handmaid':values+=[4]
-							if i=='Prince':values+=[5]
-							if i=='King':values+=[6]
-							if i=='Countess':values+=[7]
-							if i=='Princess':values+=[8]
+							values+=[value(i)]
 						for i in ai:
 							if 'Princess' in ai:aimax=8
 							elif 'Countess' in ai:aimax=7

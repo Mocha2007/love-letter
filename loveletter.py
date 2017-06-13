@@ -131,46 +131,10 @@ while 1:
 				elif choice=='Baron':
 					sfxbaron()
 					print(player[0],'v.',ai[0])
-					if 'Princess' in player:
+					if value(player[0])>value(ai[0]):
 						winner='Player'
 						break
-					elif 'Princess' in ai:
-						winner='AI'
-						break
-					elif 'Countess' in player:
-						winner='Player'
-						break
-					elif 'Countess' in ai:
-						winner='AI'
-						break
-					elif 'King' in player:
-						winner='Player'
-						break
-					elif 'King' in ai:
-						winner='AI'
-						break
-					elif 'Prince' in player and 'Prince' not in ai:
-						winner='Player'
-						break
-					elif 'Prince' in ai and 'Prince' not in player:
-						winner='AI'
-						break
-					elif 'Handmaid' in player and 'Handmaid' not in ai:
-						winner='Player'
-						break
-					elif 'Handmaid' in ai and 'Handmaid' not in player:
-						winner='AI'
-						break
-					elif 'Baron' in player and 'Baron' not in ai:
-						winner='Player'
-						break
-					elif 'Baron' in ai and 'Baron' not in player:
-						winner='AI'
-						break
-					elif 'Priest' in player and 'Priest' not in ai:
-						winner='Player'
-						break
-					elif 'Priest' in ai and 'Priest' not in player:
+					elif value(player[0])<value(ai[0]):
 						winner='AI'
 						break
 					else:
@@ -277,46 +241,10 @@ while 1:
 					elif choice=='Baron':
 						sfxbaron()
 						print(player[0],'v.',ai[0])
-						if 'Princess' in player:
+						if value(player[0])>value(ai[0]):
 							winner='Player'
 							break
-						elif 'Princess' in ai:
-							winner='AI'
-							break
-						elif 'Countess' in player:
-							winner='Player'
-							break
-						elif 'Countess' in ai:
-							winner='AI'
-							break
-						elif 'King' in player:
-							winner='Player'
-							break
-						elif 'King' in ai:
-							winner='AI'
-							break
-						elif 'Prince' in player and 'Prince' not in ai:
-							winner='Player'
-							break
-						elif 'Prince' in ai and 'Prince' not in player:
-							winner='AI'
-							break
-						elif 'Handmaid' in player and 'Handmaid' not in ai:
-							winner='Player'
-							break
-						elif 'Handmaid' in ai and 'Handmaid' not in player:
-							winner='AI'
-							break
-						elif 'Baron' in player and 'Baron' not in ai:
-							winner='Player'
-							break
-						elif 'Baron' in ai and 'Baron' not in player:
-							winner='AI'
-							break
-						elif 'Priest' in player and 'Priest' not in ai:
-							winner='Player'
-							break
-						elif 'Priest' in ai and 'Priest' not in player:
+						elif value(player[0])<value(ai[0]):
 							winner='AI'
 							break
 						else:

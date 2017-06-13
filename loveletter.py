@@ -3,6 +3,16 @@ from statistics import median
 pygame.mixer.init()
 pygame.mixer.Sound('mus.wav').play(-1).set_volume(1/6)
 pygame.mixer.Channel(1)
+def value(role):
+	if role=='Guard':return 1
+	if role=='Priest':return 2
+	if role=='Baron':return 3
+	if role=='Handmaid':return 4
+	if role=='Prince':return 5
+	if role=='King':return 6
+	if role=='Countess':return 7
+	if role=='Princess':return 8
+	return 0
 def wait():
 	while pygame.mixer.Channel(1).get_queue()!=None:
 		pass
@@ -201,8 +211,8 @@ while 1:
 					print("I know your hand is the",lastseen,">:3")#DEBUG
 				wait()
 				queue('aichoose.wav')
-				if 'Countess' in ai and ('King' in ai or 'Prince' in ai):
-					choice='Countess'
+				if 'Countess' in ai and ('King' in ai or 'Prince' in ai):choice='Countess'#forced countess?
+				elif 'Baron' in ai and lastseen!=0 and value(ai[1-ai.index('Baron')])>value(player[0]):choice='Baron'#ai knows their other card is better than player's
 				#else choose
 				else:
 					#determines median-valued card in deck & player hand

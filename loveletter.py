@@ -181,7 +181,7 @@ while 1:
 				else:
 					#determines median-valued card in deck & player hand
 					values=[]
-					aimax=0#aside from baron cards
+					aimax=3#aside from baron cards
 					#checks baron first
 					if 'Baron' in ai:
 						for i in player:

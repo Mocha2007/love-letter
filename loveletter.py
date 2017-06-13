@@ -18,47 +18,40 @@ def wait():
 		pass
 def queue(filename):
         pygame.mixer.Channel(1).queue(pygame.mixer.Sound(filename))
+def p(filename):
+	wait()
+	queue(file)
 def sfxguard():
 	file=random.choice(['guard.wav','guard2.wav','guard3.wav'])
-	wait()
-	queue(file)
+	p(file)
 def sfxpriest():
 	file=random.choice(['priest.wav','priest2.wav'])
-	wait()
-	queue(file)
+	p(file)
 def sfxbaron():
 	file=random.choice(['baron.wav'])
-	wait()
-	queue(file)
+	p(file)
 def sfxhandmaid():
 	file=random.choice(['handmaid.wav'])
-	wait()
-	queue(file)
+	p(file)
 def sfxprince():
 	file=random.choice(['prince.wav'])
-	wait()
-	queue(file)
+	p(file)
 def sfxking():
 	file=random.choice(['king.wav'])
-	wait()
-	queue(file)
+	p(file)
 while 1:
 	score=0
 	playerscore=0
 	aiscore=0
-	wait()
-	queue('newgame.wav')
+	p('newgame.wav')
 	while aiscore<7>playerscore:
 		print("New Round of Mocha's Love Letter Sim!",playerscore,"-",aiscore)
-		wait()
-		queue('round.wav')
-
+		p('round.wav')
 		deck=['Princess','Countess','King']+['Prince']*2+['Handmaid']*2+['Baron']*2+['Priest']*2+['Guard']*5
 		player=[]
 		ai=[]
 		discard=[]
 		winner=0
-
 		#discard 1 wholly
 		numya=random.randint(0,15)
 		numyo=[deck[numya]]
@@ -75,11 +68,9 @@ while 1:
 		danda=random.randint(0,10)
 		ai+=[deck[danda]]
 		del deck[danda]
-
 		#protection init
 		protectai=0
 		protectplayer=0
-
 		lastseen=0
 		while len(deck)>0:
 			#player goes first
@@ -92,8 +83,7 @@ while 1:
 			print("Your hand:",player)
 			print("Discard:",discard)
 			#check to see if a king or prince forces a countess:
-			wait()
-			queue('choose.wav')
+			p('choose.wav')
 			if 'Countess' in player and ('King' in player or 'Prince' in player):
 				choice='Countess'
 			elif 'Princess' in player:
@@ -173,8 +163,7 @@ while 1:
 				print('AI is choosing...')
 				if lastseen!=0:#DEBUG
 					print("I know your hand is the",lastseen,">:3")#DEBUG
-				wait()
-				queue('aichoose.wav')
+				p('aichoose.wav')
 				if 'Countess' in ai and ('King' in ai or 'Prince' in ai):choice='Countess'#forced countess?
 				elif 'Baron' in ai and lastseen!=0 and value(ai[1-ai.index('Baron')])>value(player[0]):choice='Baron'#ai knows their other card is better than player's
 				#else choose

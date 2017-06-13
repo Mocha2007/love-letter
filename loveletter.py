@@ -20,7 +20,7 @@ def queue(filename):
         pygame.mixer.Channel(1).queue(pygame.mixer.Sound(filename))
 def p(filename):
 	wait()
-	queue(file)
+	queue(filename)
 def sfxguard():
 	file=random.choice(['guard.wav','guard2.wav','guard3.wav'])
 	p(file)

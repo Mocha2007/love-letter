@@ -347,20 +347,8 @@ while 1:
 			else:break
 		if winner!=0:print(winner,'wins!')
 		else:
-			if 'Princess' in player:winner='Player'
-			elif 'Princess' in ai:winner='AI'
-			elif 'Countess' in player:winner='Player'
-			elif 'Countess' in ai:winner='AI'
-			elif 'King' in player:winner='Player'
-			elif 'King' in ai:winner='AI'
-			elif 'Prince' in player and 'Prince' not in ai:winner='Player'
-			elif 'Prince' in ai and 'Prince' not in player:winner='AI'
-			elif 'Handmaid' in player and 'Handmaid' not in ai:winner='Player'
-			elif 'Handmaid' in ai and 'Handmaid' not in player:winner='AI'
-			elif 'Baron' in player and 'Baron' not in ai:winner='Player'
-			elif 'Baron' in ai and 'Baron' not in player:winner='AI'
-			elif 'Priest' in player and 'Priest' not in ai:winner='Player'
-			elif 'Priest' in ai and 'Priest' not in player:winner='AI'
+			if value(player[0])>value(ai[0]):winner='Player'
+			elif value(player[0])<value(ai[0]):winner='AI'
 			if winner!=False:print(winner,'wins!')
 			else:print('Tie!')
 		if winner=='Player':playerscore+=1

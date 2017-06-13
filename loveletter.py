@@ -281,7 +281,7 @@ while 1:
 					if choice=='Guard':
 						sfxguard()
 						guess='Guard'
-						if lastseen!=0:guess=lastseen
+						if lastseen!=0 and lastseen!='Guard':guess=lastseen
 						else:
 							while guess=='Guard':
 								#guess the player's card - this is kinda cheating but it's simple

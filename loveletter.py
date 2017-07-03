@@ -162,6 +162,7 @@ while 1:
 				#check to see if a king or prince forces a countess:
 				print('AI is choosing...')
 				if lastseen!=0:#DEBUG
+					p('aiknows.wav')
 					print("I know your hand is the",lastseen,">:3")#DEBUG
 				p('aichoose.wav')
 				if 'Countess' in ai and ('King' in ai or 'Prince' in ai):choice='Countess'#forced countess?

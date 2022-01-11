@@ -1,4 +1,4 @@
-import random
+from random import randint, choice
 from statistics import median
 from sys import argv
 
@@ -37,22 +37,22 @@ def p(filename: str) -> None:
 	queue('sfx/'+filename+'.wav')
 
 def sfxguard() -> None:
-	p(random.choice(['guard','guard2','guard3']))
+	p(choice(['guard','guard2','guard3']))
 
 def sfxpriest() -> None:
-	p(random.choice(['priest','priest2']))
+	p(choice(['priest','priest2']))
 
 def sfxbaron() -> None:
-	p(random.choice(['baron']))
+	p(choice(['baron']))
 
 def sfxhandmaid() -> None:
-	p(random.choice(['handmaid']))
+	p(choice(['handmaid']))
 
 def sfxprince() -> None:
-	p(random.choice(['prince']))
+	p(choice(['prince']))
 
 def sfxking() -> None:
-	p(random.choice(['king']))
+	p(choice(['king']))
 
 # main
 while 1:
@@ -72,19 +72,19 @@ while 1:
 		discard = []
 		winner = 0
 		# discard 1 wholly
-		numya = random.randint(0,15)
+		numya = randint(0,15)
 		numyo = [deck[numya]]
 		del deck[numya]
 		# reveal 3
 		for _ in range(3):
-			delenda = random.randint(0, len(deck)-1)
+			delenda = randint(0, len(deck)-1)
 			discard += [deck[delenda]]
 			del deck[delenda]
 		# 1 card to each player
-		danda = random.randint(0, 11)
+		danda = randint(0, 11)
 		player.append(deck[danda])
 		del deck[danda]
-		danda = random.randint(0, 10)
+		danda = randint(0, 10)
 		ai.append(deck[danda])
 		del deck[danda]
 		# protection init
@@ -95,7 +95,7 @@ while 1:
 			# player goes first
 			protectplayer = 0
 			# draw
-			danda = random.randint(0, len(deck)-1)
+			danda = randint(0, len(deck)-1)
 			player.append(deck[danda])
 			del deck[danda]
 			# reminders
@@ -157,7 +157,7 @@ while 1:
 						winner = 'Player'
 						break
 					try:
-						draw = random.randint(0, len(deck)-1)
+						draw = randint(0, len(deck)-1)
 						print('AI discards the', ai[0])
 						discard += ai
 						del ai[0]
@@ -178,7 +178,7 @@ while 1:
 			if deck:
 				protectai = 0
 				# draw
-				danda = random.randint(0, len(deck)-1)
+				danda = randint(0, len(deck)-1)
 				ai.append(deck[danda])
 				del deck[danda]
 				# check to see if a king or prince forces a countess:
@@ -239,7 +239,7 @@ while 1:
 						else:
 							while guess == 'Guard':
 								# guess the player's card - this is kinda cheating but it's simple
-								guess = random.choice(player+deck+numyo)
+								guess = choice(player+deck+numyo)
 						if guess in player:
 							winner = 'AI'
 							break
@@ -266,7 +266,7 @@ while 1:
 							winner = 'AI'
 							break
 						try:
-							draw = random.randint(0, len(deck)-1)
+							draw = randint(0, len(deck)-1)
 							print(f'Player discards the {player[0]}')
 							discard += player
 							del player[0]

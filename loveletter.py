@@ -1,5 +1,4 @@
 from random import randint, choice
-from statistics import median
 from sys import argv
 
 nosound = 'nosound' in argv
@@ -194,8 +193,6 @@ while 1:
 				# else choose
 				else:
 					# determines median-valued card in deck & player hand
-					values = []
-					aimax = 3 # aside from baron card
 					# checks baron first
 					if 'Baron' in ai:
 						for i in player:
@@ -205,8 +202,9 @@ while 1:
 						for i in numyo:
 							values.append(value(i))
 						aimax = max(ai, key=value)
-						if aimax > median(values):
-							# will only discard with a >50% chance or player protection
+						cards = player+deck+numyo
+						# will only discard with a >50% chance or player protection
+						if 0.5 < sum(aimax > c for c in cards)/len(cards):
 							choice = 'Baron'
 					# choose the LOWEST value card
 					if 'Guard' in ai:

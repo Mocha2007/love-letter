@@ -5,7 +5,7 @@ nosound = 'nosound' in argv
 if not nosound:
 	import pygame
 	pygame.mixer.init()
-	pygame.mixer.Sound('mus.wav').play(-1).set_volume(1/6)
+	pygame.mixer.Sound('sfx/mus.wav').play(-1).set_volume(1/6)
 	pygame.mixer.Channel(1)
 
 values = {
@@ -52,11 +52,11 @@ while 1:
 	score = 0
 	playerscore = 0
 	aiscore = 0
-	p('newgame.wav')
+	p('newgame')
 	while aiscore < 7 > playerscore:
 		print("New Round of Mocha's Love Letter Sim!")
 		print(f"{playerscore} - {aiscore}")
-		p('round.wav')
+		p('round')
 		deck = ['Princess','Countess','King'] \
 			+ ['Prince']*2 + ['Handmaid']*2 \
 			+ ['Baron']*2 + ['Priest']*2 + ['Guard']*5

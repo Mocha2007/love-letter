@@ -292,7 +292,7 @@ while 1:
 			elif value(player[0]) < value(ai[0]):
 				winner = 'AI'
 			if winner:
-				print(winner,'wins!')
+				print(winner, 'wins!')
 			else:
 				print('Tie!')
 		if winner == 'Player':

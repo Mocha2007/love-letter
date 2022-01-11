@@ -19,6 +19,15 @@ values = {
 	'Princess': 8,
 }
 
+sfx = {
+	'guard': ['guard','guard2','guard3'],
+	'priest': ['priest', 'priest2'],
+	'baron': ['baron'],
+	'handmaid': ['handmaid'],
+	'prince': ['prince'],
+	'king': ['king'],
+}
+
 def value(role: str) -> int:
 	return values[role] if role in values else 0
 
@@ -35,23 +44,8 @@ def p(filename: str) -> None:
 	wait()
 	queue('sfx/'+filename+'.wav')
 
-def sfxguard() -> None:
-	p(choice(['guard','guard2','guard3']))
-
-def sfxpriest() -> None:
-	p(choice(['priest','priest2']))
-
-def sfxbaron() -> None:
-	p(choice(['baron']))
-
-def sfxhandmaid() -> None:
-	p(choice(['handmaid']))
-
-def sfxprince() -> None:
-	p(choice(['prince']))
-
-def sfxking() -> None:
-	p(choice(['king']))
+def sfx_play(type: str) -> None:
+	p(choice(sfx[type]))
 
 # main
 while 1:
@@ -127,7 +121,7 @@ while 1:
 			if not protectai:
 				if choice == 'Guard':
 					# guess the ai's card
-					sfxguard()
+					sfx_play('guard')
 					guess = 0
 					while guess not in ['Princess', 'Countess', 'King', 'Prince', 'Handmaid', 'Baron', 'Priest']:
 						guess = input('Guess the card in the AI\'s deck: ')
@@ -137,10 +131,10 @@ while 1:
 					else:
 						print('Wrong!')
 				elif choice == 'Priest':
-					sfxpriest()
+					sfx_play('priest')
 					print(f"AI's hand: {ai[0]}")
 				elif choice == 'Baron':
-					sfxbaron()
+					sfx_play('baron')
 					print(f"{player[0]} v. {ai[0]}")
 					if value(player[0]) > value(ai[0]):
 						winner = 'Player'
@@ -151,7 +145,7 @@ while 1:
 					else:
 						print("There was a tie! Play resumes!")
 				elif choice == 'Prince':
-					sfxprince()
+					sfx_play('prince')
 					if ai[0] == 'Princess':
 						winner = 'Player'
 						break
@@ -165,13 +159,13 @@ while 1:
 						break
 					del deck[draw]
 				elif choice == 'King':
-					sfxking()
+					sfx_play('king')
 					temp = player
 					player = ai
 					ai = temp
 					lastseen = player[0]
 			if choice == 'Handmaid':
-				sfxhandmaid()
+				sfx_play('handmaid')
 				protectplayer = 1
 			# AI's turn~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			if deck:
@@ -230,7 +224,7 @@ while 1:
 				print(f'AI discards the {choice}')
 				if not protectplayer:
 					if choice == 'Guard':
-						sfxguard()
+						sfx_play('guard')
 						guess = 'Guard'
 						if 'Guard' != lastseen != 0:
 							guess = lastseen
@@ -244,11 +238,11 @@ while 1:
 						else:
 							print(f'AI Guessed wrong: {guess}')
 					elif choice == 'Priest':
-						sfxpriest()
+						sfx_play('priest')
 						# print('Player\'s deck:',player)
 						lastseen = player[0]
 					elif choice == 'Baron':
-						sfxbaron()
+						sfx_play('baron')
 						print(f"{player[0]} v. {ai[0]}")
 						if value(player[0]) > value(ai[0]):
 							winner = 'Player'
@@ -259,7 +253,7 @@ while 1:
 						else:
 							print("There was a tie! Play resumes!")
 					elif choice == 'Prince':
-						sfxprince()
+						sfx_play('prince')
 						if player[0] == 'Princess':
 							winner = 'AI'
 							break
@@ -274,13 +268,13 @@ while 1:
 							break
 						del deck[draw]
 					elif choice == 'King':
-						sfxking()
+						sfx_play('king')
 						temp = player
 						player = ai
 						ai = temp
 						lastseen = player[0]
 				if choice == 'Handmaid':
-					sfxhandmaid()
+					sfx_play('handmaid')
 					protectai = 1
 			else:
 				break

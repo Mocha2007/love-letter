@@ -1,0 +1,6 @@
+{
+	// https://stackoverflow.com/a/65554274/2579798
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    // "python.languageServer": "Microsoft"
+}

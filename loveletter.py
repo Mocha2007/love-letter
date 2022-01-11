@@ -32,7 +32,7 @@ def value(role: str) -> int:
 	return values[role] if role in values else 0
 
 def wait() -> None:
-	while pygame.mixer.Channel(1).get_queue()!=None:
+	while pygame.mixer.Channel(1).get_queue():
 		pass
 
 def queue(filename: str) -> None:

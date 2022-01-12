@@ -81,12 +81,12 @@ while 1:
 		ai.append(deck[danda])
 		del deck[danda]
 		# protection init
-		protectai = 0
-		protectplayer = 0
+		protectai = False
+		protectplayer = False
 		lastseen = 0
 		while len(deck):
 			# player goes first
-			protectplayer = 0
+			protectplayer = False
 			# draw
 			danda = randint(0, len(deck)-1)
 			player.append(deck[danda])
@@ -166,10 +166,10 @@ while 1:
 					lastseen = player[0]
 			if ch == 'Handmaid':
 				sfx_play('handmaid')
-				protectplayer = 1
+				protectplayer = True
 			# AI's turn~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			if deck:
-				protectai = 0
+				protectai = False
 				# draw
 				danda = randint(0, len(deck)-1)
 				ai.append(deck[danda])
@@ -269,7 +269,7 @@ while 1:
 						lastseen = player[0]
 				if ch == 'Handmaid':
 					sfx_play('handmaid')
-					protectai = 1
+					protectai = True
 			else:
 				break
 		if winner:

@@ -254,10 +254,10 @@ while 1:
 							discard += player
 							del player[0]
 							player.append(deck[draw])
+							del deck[draw]
 						except:
 							# game over if deck runs out
 							break
-						del deck[draw]
 					elif ch == 'King':
 						sfx_play('king')
 						temp = player

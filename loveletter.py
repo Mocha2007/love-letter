@@ -270,7 +270,8 @@ while 1:
 				if ch == 'Handmaid':
 					sfx_play('handmaid')
 					protectai = True
-			else:
+			else: # deck empty
+				print(f'Deck Empty! Player: {player[0]} v. AI: {ai[0]}')
 				break
 		if winner:
 			print(winner,'wins!')

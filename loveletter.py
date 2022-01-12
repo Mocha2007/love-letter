@@ -180,19 +180,18 @@ while 1:
 					p('aiknows')
 					print(f"I know your hand is the {lastseen} >:3")
 				p('aichoose')
-				if 'Countess' in ai and ('King' in ai or 'Prince' in ai):
+				if 'Princess' in ai:
+					ch = ai[1-ai.index('Princess')] # forced
+				elif 'Countess' in ai and ('King' in ai or 'Prince' in ai):
 					ch = 'Countess' # forced countess?
 				elif 'Baron' in ai and lastseen and value(ai[1-ai.index('Baron')]) > value(player[0]):
 					ch = 'Baron' # ai knows their other card is better than player's
 				# else choose
 				# determines median-valued card in deck & player hand
 				# checks baron first
-				elif 'Baron' in ai:
-					aimax = max(ai, key=value)
-					cards = player+deck+numyo
-					# will only discard with a >50% chance or player protection
-					if 0.5 < sum(aimax > c for c in cards)/len(cards):
-						ch = 'Baron'
+				elif 'Baron' in ai and 0.5 < sum(max(ai, key=value) > c \
+						for c in player+deck+numyo)/len(player+deck+numyo):
+					ch = 'Baron'
 				# choose the LOWEST value card
 				elif 'Guard' in ai:
 					ch = 'Guard'
@@ -205,8 +204,8 @@ while 1:
 					ch = 'Handmaid'
 				elif 'Prince' in ai:
 					ch = 'Prince'
-				elif 'Baron' in ai:
-					ch = 'Baron'
+				#elif 'Baron' in ai:
+				#	ch = 'Baron'
 				elif 'King' in ai:
 					ch = 'King'
 				else:

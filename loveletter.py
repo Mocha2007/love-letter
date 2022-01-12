@@ -187,8 +187,7 @@ while 1:
 				elif 'Baron' in ai and lastseen and value(ai[1-ai.index('Baron')]) > value(player[0]):
 					ch = 'Baron' # ai knows their other card is better than player's
 				# else choose
-				# determines median-valued card in deck & player hand
-				# checks baron first
+				# if AI discards baron, does it have >50% chance of winning?
 				elif 'Baron' in ai and 0.5 < sum(max(ai, key=value) > c \
 						for c in player+deck+numyo)/len(player+deck+numyo):
 					ch = 'Baron'
@@ -204,10 +203,10 @@ while 1:
 					ch = 'Handmaid'
 				elif 'Prince' in ai:
 					ch = 'Prince'
-				#elif 'Baron' in ai:
-				#	ch = 'Baron'
 				elif 'King' in ai:
 					ch = 'King'
+				elif 'Baron' in ai: # idk if this is necessary, but...
+					ch = 'Baron'
 				else:
 					ch = 'Countess'
 				# move card from hand to discard

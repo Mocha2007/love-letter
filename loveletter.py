@@ -185,33 +185,32 @@ while 1:
 				elif 'Baron' in ai and lastseen and value(ai[1-ai.index('Baron')]) > value(player[0]):
 					ch = 'Baron' # ai knows their other card is better than player's
 				# else choose
+				# determines median-valued card in deck & player hand
+				# checks baron first
+				elif 'Baron' in ai:
+					aimax = max(ai, key=value)
+					cards = player+deck+numyo
+					# will only discard with a >50% chance or player protection
+					if 0.5 < sum(aimax > c for c in cards)/len(cards):
+						ch = 'Baron'
+				# choose the LOWEST value card
+				elif 'Guard' in ai:
+					ch = 'Guard'
+				elif 'Priest' in ai:
+					ch = 'Priest'
+				elif 'Baron' in ai and protectplayer:
+					# will only discard with a >50% chance or player protection
+					ch = 'Baron'
+				elif 'Handmaid' in ai:
+					ch = 'Handmaid'
+				elif 'Prince' in ai:
+					ch = 'Prince'
+				elif 'Baron' in ai:
+					ch = 'Baron'
+				elif 'King' in ai:
+					ch = 'King'
 				else:
-					# determines median-valued card in deck & player hand
-					# checks baron first
-					if 'Baron' in ai:
-						aimax = max(ai, key=value)
-						cards = player+deck+numyo
-						# will only discard with a >50% chance or player protection
-						if 0.5 < sum(aimax > c for c in cards)/len(cards):
-							ch = 'Baron'
-					# choose the LOWEST value card
-					if 'Guard' in ai:
-						ch = 'Guard'
-					elif 'Priest' in ai:
-						ch = 'Priest'
-					elif 'Baron' in ai and protectplayer:
-						# will only discard with a >50% chance or player protection
-						ch = 'Baron'
-					elif 'Handmaid' in ai:
-						ch = 'Handmaid'
-					elif 'Prince' in ai:
-						ch = 'Prince'
-					elif 'Baron' in ai:
-						ch = 'Baron'
-					elif 'King' in ai:
-						ch = 'King'
-					else:
-						ch = 'Countess'
+					ch = 'Countess'
 				# move card from hand to discard
 				ai.remove(ch)
 				discard.append(ch)

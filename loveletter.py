@@ -42,7 +42,7 @@ def p(filename: str) -> None:
 	if nosound:
 		return
 	wait()
-	queue('sfx/'+filename+'.wav')
+	queue(f'sfx/{filename}.wav')
 
 def sfx_play(type: str) -> None:
 	p(choice(sfx[type]))
@@ -92,34 +92,34 @@ while 1:
 			player.append(deck[danda])
 			del deck[danda]
 			# reminders
-			print(f"Your hand:{', '.join(player)}")
-			print(f"Discard:{', '.join(discard)}")
+			print(f"Your hand: {', '.join(player)}")
+			print(f"Discard: {', '.join(discard)}")
 			# check to see if a king or prince forces a countess:
-			p('choose.wav')
+			p('choose')
 			if 'Countess' in player and ('King' in player or 'Prince' in player):
-				choice = 'Countess'
+				ch = 'Countess'
 			elif 'Princess' in player:
 				for i in player:
 					if i != 'Princess':
-						choice = i
+						ch = i
 						break
 			elif player[0] == player[1]:
-				choice = player[0]
+				ch = player[0]
 			# else choose
 			else:
-				choice = 0
+				ch = 0
 				if protectai:
 					print("AI is currently PROTECTED")
-				while choice not in player:
-					choice = input("Choose a card to discard: ")
+				while ch not in player:
+					ch = input("Choose a card to discard: ")
 			# move card from hand to discard
-			player.remove(choice)
-			discard.append(choice)
-			if choice == lastseen:
+			player.remove(ch)
+			discard.append(ch)
+			if ch == lastseen:
 				lastseen = 0
-			print(f'You discarded the {choice}')
+			print(f'You discarded the {ch}')
 			if not protectai:
-				if choice == 'Guard':
+				if ch == 'Guard':
 					# guess the ai's card
 					sfx_play('guard')
 					guess = 0
@@ -130,10 +130,10 @@ while 1:
 						break
 					else:
 						print('Wrong!')
-				elif choice == 'Priest':
+				elif ch == 'Priest':
 					sfx_play('priest')
 					print(f"AI's hand: {ai[0]}")
-				elif choice == 'Baron':
+				elif ch == 'Baron':
 					sfx_play('baron')
 					print(f"{player[0]} v. {ai[0]}")
 					if value(player[0]) > value(ai[0]):
@@ -144,7 +144,7 @@ while 1:
 						break
 					else:
 						print("There was a tie! Play resumes!")
-				elif choice == 'Prince':
+				elif ch == 'Prince':
 					sfx_play('prince')
 					if ai[0] == 'Princess':
 						winner = 'Player'
@@ -158,13 +158,13 @@ while 1:
 					except: # game over if deck runs out
 						break
 					del deck[draw]
-				elif choice == 'King':
+				elif ch == 'King':
 					sfx_play('king')
 					temp = player
 					player = ai
 					ai = temp
 					lastseen = player[0]
-			if choice == 'Handmaid':
+			if ch == 'Handmaid':
 				sfx_play('handmaid')
 				protectplayer = 1
 			# AI's turn~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -177,53 +177,47 @@ while 1:
 				# check to see if a king or prince forces a countess:
 				print('AI is choosing...')
 				if lastseen:
-					p('aiknows.wav')
+					p('aiknows')
 					print(f"I know your hand is the {lastseen} >:3")
-				p('aichoose.wav')
+				p('aichoose')
 				if 'Countess' in ai and ('King' in ai or 'Prince' in ai):
-					choice = 'Countess' # forced countess?
+					ch = 'Countess' # forced countess?
 				elif 'Baron' in ai and lastseen and value(ai[1-ai.index('Baron')]) > value(player[0]):
-					choice = 'Baron' # ai knows their other card is better than player's
+					ch = 'Baron' # ai knows their other card is better than player's
 				# else choose
 				else:
 					# determines median-valued card in deck & player hand
 					# checks baron first
 					if 'Baron' in ai:
-						for i in player:
-							values.append(value(i))
-						for i in deck:
-							values.append(value(i))
-						for i in numyo:
-							values.append(value(i))
 						aimax = max(ai, key=value)
 						cards = player+deck+numyo
 						# will only discard with a >50% chance or player protection
 						if 0.5 < sum(aimax > c for c in cards)/len(cards):
-							choice = 'Baron'
+							ch = 'Baron'
 					# choose the LOWEST value card
 					if 'Guard' in ai:
-						choice = 'Guard'
+						ch = 'Guard'
 					elif 'Priest' in ai:
-						choice = 'Priest'
+						ch = 'Priest'
 					elif 'Baron' in ai and protectplayer:
 						# will only discard with a >50% chance or player protection
-						choice = 'Baron'
+						ch = 'Baron'
 					elif 'Handmaid' in ai:
-						choice = 'Handmaid'
+						ch = 'Handmaid'
 					elif 'Prince' in ai:
-						choice = 'Prince'
+						ch = 'Prince'
 					elif 'Baron' in ai:
-						choice = 'Baron'
+						ch = 'Baron'
 					elif 'King' in ai:
-						choice = 'King'
+						ch = 'King'
 					else:
-						choice = 'Countess'
+						ch = 'Countess'
 				# move card from hand to discard
-				ai.remove(choice)
-				discard.append(choice)
-				print(f'AI discards the {choice}')
+				ai.remove(ch)
+				discard.append(ch)
+				print(f'AI discards the {ch}')
 				if not protectplayer:
-					if choice == 'Guard':
+					if ch == 'Guard':
 						sfx_play('guard')
 						guess = 'Guard'
 						if 'Guard' != lastseen != 0:
@@ -237,11 +231,11 @@ while 1:
 							break
 						else:
 							print(f'AI Guessed wrong: {guess}')
-					elif choice == 'Priest':
+					elif ch == 'Priest':
 						sfx_play('priest')
 						# print('Player\'s deck:',player)
 						lastseen = player[0]
-					elif choice == 'Baron':
+					elif ch == 'Baron':
 						sfx_play('baron')
 						print(f"{player[0]} v. {ai[0]}")
 						if value(player[0]) > value(ai[0]):
@@ -252,7 +246,7 @@ while 1:
 							break
 						else:
 							print("There was a tie! Play resumes!")
-					elif choice == 'Prince':
+					elif ch == 'Prince':
 						sfx_play('prince')
 						if player[0] == 'Princess':
 							winner = 'AI'
@@ -267,13 +261,13 @@ while 1:
 							# game over if deck runs out
 							break
 						del deck[draw]
-					elif choice == 'King':
+					elif ch == 'King':
 						sfx_play('king')
 						temp = player
 						player = ai
 						ai = temp
 						lastseen = player[0]
-				if choice == 'Handmaid':
+				if ch == 'Handmaid':
 					sfx_play('handmaid')
 					protectai = 1
 			else:

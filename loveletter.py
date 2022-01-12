@@ -288,7 +288,7 @@ while 1:
 		elif winner == 'AI':
 			aiscore += 1
 	if playerscore == 7:
-		print(f'Player is first to 7! ( AI had {aiscore})')
+		print(f'Player is first to 7! (AI had {aiscore})')
 	else:
-		print(f'AI is first to 7! ( You had {playerscore})')
+		print(f'AI is first to 7! (You had {playerscore})')
 	input("-"*20)
